@@ -2,34 +2,36 @@
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using ConsoleDemo.Settings;
 using Microsoft.Identity.Client;
-
-var config = new PublicClientApplicationOptions
-{
-    // 'Directory (tenant) ID' of the app registration in the Microsoft Entra admin center
-    TenantId = "14762077-e0ef-404b-b843-5c32a95a0d43",
-
-    // 'Application (client) ID' of the app registration in the Microsoft Entra admin center
-    ClientId = "4aba821f-d4ff-498b-a462-c2837dbbba70"
-};
-
 
 const string tenantName = "buildingsmartservices";
 const string tenant = $"{tenantName}.onmicrosoft.com";
-const string scope = $"https://{tenantName}.onmicrosoft.com/api/read";
 const string policySignUpSignIn = "b2c_1a_signupsignin_c";
 const string azureAdB2CHostname = "authentication.buildingsmart.org";
 const string authorityBase = $"https://{azureAdB2CHostname}/tfp/{tenant}/";
 const string authoritySignUpSignIn = $"{authorityBase}{policySignUpSignIn}";
 const string redirectUri = "http://localhost";
 
-const string apiBaseUrl = "https://test.bsdd.buildingsmart.org";
+var appSettings = AppSettingsReader.GetAppSettings<AppSettings>();
+
+var msalClientOptions = new PublicClientApplicationOptions
+{
+    // 'Directory (tenant) ID' of the app registration in the Microsoft Entra admin center
+    TenantId = appSettings.BsddApi.TenantId,
+
+    // 'Application (client) ID' of the app registration in the Microsoft Entra admin center
+    ClientId = appSettings.BsddApi.ClientId
+};
+
+var apiBaseUrl = appSettings.BsddApi.BaseUrl;
+var scope = $"https://{tenantName}.onmicrosoft.com/{appSettings.BsddApi.Scope}";
 string searchListUrl = $"{apiBaseUrl}/api/SearchInDictionary/v1?DictionaryUri=" + WebUtility.UrlEncode("https://identifier.buildingsmart.org/uri/bs-agri/testpriv/1.0");
 
 // In order to take advantage of token caching, your MSAL client singleton must
 // have a lifecycle that at least matches the lifecycle of the user's session in
 // the console application.
-var publicMsalClient = PublicClientApplicationBuilder.CreateWithApplicationOptions(config)
+var publicMsalClient = PublicClientApplicationBuilder.CreateWithApplicationOptions(msalClientOptions)
     .WithB2CAuthority(authoritySignUpSignIn)
     .WithRedirectUri(redirectUri)
     .WithLogging(Log, LogLevel.Info, false)
