@@ -106,7 +106,7 @@ public class ClassApi(BsddApiClient bsddApiClient) : IClassApi
     /// <param name="searchText">Optional: Search text to filter the properties.  Search is done in the property name, property description and property code.  Cannot be used together with PropertySet or PropertyCode. (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (ClassPropertiesContractV1)</returns>
     public async Task<ClassPropertiesContractV1> ClassPropertiesGetAsync(string classUri, string? propertySet = null, string? propertyCode = null, string? searchText = null, int? offset = null, int? limit = null, string? languageCode = null, CancellationToken ct = default)
     {
@@ -137,7 +137,7 @@ public class ClassApi(BsddApiClient bsddApiClient) : IClassApi
     /// <param name="searchText">Optional: Search text to filter the relations.  Search is done in the class name only. (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (ClassRelationsContractV1)</returns>
     public async Task<ClassRelationsContractV1> ClassRelationsGetAsync(string classUri, bool getReverseRelations = false, string? searchText = null, int? offset = null, int? limit = null, string? languageCode = null, CancellationToken ct = default)
     {

@@ -85,7 +85,7 @@ public partial class PropertyContractV4 :  IEquatable<PropertyContractV4>, IVali
             this.ActivationDateUtc = activationDateUtc;
         }
         // to ensure "code" is required (not null)
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
         {
             throw new InvalidDataException("code is a required property for PropertyContractV4 and cannot be null");
         }

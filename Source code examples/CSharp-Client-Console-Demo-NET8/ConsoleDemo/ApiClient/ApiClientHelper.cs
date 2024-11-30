@@ -57,7 +57,7 @@ public static class ApiClientHelper
     /// </summary>
     /// <param name="obj">The parameter (header, path, query, form).</param>
     /// <returns>Formatted string.</returns>
-    private static string? ParameterToString(object obj)
+    public static string? ParameterToString(object obj)
     {
         if (obj is DateTime time)
             // Return a formatted date string - Can be customized with Configuration.DateTimeFormat

@@ -32,7 +32,7 @@ public interface IPropertyApi : IApiAccessor
     /// <param name="searchText">Search text to filter classes (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of PropertyClassesContractV1</returns>
     Task<PropertyClassesContractV1> PropertyClassesGetAsync (string propertyUri, InternalExternalOptionV1 internalExternal = null, string searchText = null, int? offset = null, int? limit = null, string languageCode = null);
 
@@ -48,7 +48,7 @@ public interface IPropertyApi : IApiAccessor
     /// <param name="searchText">Search text to filter classes (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (PropertyClassesContractV1)</returns>
     Task<ApiResponse<PropertyClassesContractV1>> PropertyClassesGetAsyncWithHttpInfo (string propertyUri, InternalExternalOptionV1 internalExternal = null, string searchText = null, int? offset = null, int? limit = null, string languageCode = null);
     /// <summary>
@@ -60,7 +60,7 @@ public interface IPropertyApi : IApiAccessor
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="uri">URI of the property, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/1.1/prop/color</param>
     /// <param name="includeClasses">Set to true to get list of classes where property is used (only classes of the same dictionary as the property).              Maximum number of class properties returned is 2000. In the next version of the API this option probably will be removed.              Preferred way to get the classes is by using api/Property/Classes/v1 (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of PropertyContractV4</returns>
     Task<PropertyContractV4> PropertyGetAsync (string uri, bool? includeClasses = null, string languageCode = null);
 
@@ -73,7 +73,7 @@ public interface IPropertyApi : IApiAccessor
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="uri">URI of the property, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/1.1/prop/color</param>
     /// <param name="includeClasses">Set to true to get list of classes where property is used (only classes of the same dictionary as the property).              Maximum number of class properties returned is 2000. In the next version of the API this option probably will be removed.              Preferred way to get the classes is by using api/Property/Classes/v1 (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (PropertyContractV4)</returns>
     Task<ApiResponse<PropertyContractV4>> PropertyGetAsyncWithHttpInfo (string uri, bool? includeClasses = null, string languageCode = null);
     /// <summary>
@@ -87,7 +87,7 @@ public interface IPropertyApi : IApiAccessor
     /// <param name="getReverseRelations">Get either the forward or the reverse relations</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of PropertyRelationsContractV1</returns>
     Task<PropertyRelationsContractV1> PropertyRelationsGetAsync (string propertyUri, bool? getReverseRelations, int? offset = null, int? limit = null, string languageCode = null);
 
@@ -102,7 +102,7 @@ public interface IPropertyApi : IApiAccessor
     /// <param name="getReverseRelations">Get either the forward or the reverse relations</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (PropertyRelationsContractV1)</returns>
     Task<ApiResponse<PropertyRelationsContractV1>> PropertyRelationsGetAsyncWithHttpInfo (string propertyUri, bool? getReverseRelations, int? offset = null, int? limit = null, string languageCode = null);
     /// <summary>
@@ -248,7 +248,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="searchText">Search text to filter classes (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>PropertyClassesContractV1</returns>
     public PropertyClassesContractV1 PropertyClassesGet (string propertyUri, InternalExternalOptionV1 internalExternal = null, string searchText = null, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -265,7 +265,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="searchText">Search text to filter classes (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>ApiResponse of PropertyClassesContractV1</returns>
     public ApiResponse< PropertyClassesContractV1 > PropertyClassesGetWithHttpInfo (string propertyUri, InternalExternalOptionV1 internalExternal = null, string searchText = null, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -336,7 +336,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="searchText">Search text to filter classes (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of PropertyClassesContractV1</returns>
     public async Task<PropertyClassesContractV1> PropertyClassesGetAsync (string propertyUri, InternalExternalOptionV1 internalExternal = null, string searchText = null, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -354,7 +354,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="searchText">Search text to filter classes (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (PropertyClassesContractV1)</returns>
     public async Task<ApiResponse<PropertyClassesContractV1>> PropertyClassesGetAsyncWithHttpInfo (string propertyUri, InternalExternalOptionV1 internalExternal = null, string searchText = null, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -422,7 +422,7 @@ public partial class PropertyApi : IPropertyApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="uri">URI of the property, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/1.1/prop/color</param>
     /// <param name="includeClasses">Set to true to get list of classes where property is used (only classes of the same dictionary as the property).              Maximum number of class properties returned is 2000. In the next version of the API this option probably will be removed.              Preferred way to get the classes is by using api/Property/Classes/v1 (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>PropertyContractV4</returns>
     public PropertyContractV4 PropertyGet (string uri, bool? includeClasses = null, string languageCode = null)
     {
@@ -436,7 +436,7 @@ public partial class PropertyApi : IPropertyApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="uri">URI of the property, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/1.1/prop/color</param>
     /// <param name="includeClasses">Set to true to get list of classes where property is used (only classes of the same dictionary as the property).              Maximum number of class properties returned is 2000. In the next version of the API this option probably will be removed.              Preferred way to get the classes is by using api/Property/Classes/v1 (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>ApiResponse of PropertyContractV4</returns>
     public ApiResponse< PropertyContractV4 > PropertyGetWithHttpInfo (string uri, bool? includeClasses = null, string languageCode = null)
     {
@@ -501,7 +501,7 @@ public partial class PropertyApi : IPropertyApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="uri">URI of the property, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/1.1/prop/color</param>
     /// <param name="includeClasses">Set to true to get list of classes where property is used (only classes of the same dictionary as the property).              Maximum number of class properties returned is 2000. In the next version of the API this option probably will be removed.              Preferred way to get the classes is by using api/Property/Classes/v1 (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of PropertyContractV4</returns>
     public async Task<PropertyContractV4> PropertyGetAsync (string uri, bool? includeClasses = null, string languageCode = null)
     {
@@ -516,7 +516,7 @@ public partial class PropertyApi : IPropertyApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="uri">URI of the property, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/1.1/prop/color</param>
     /// <param name="includeClasses">Set to true to get list of classes where property is used (only classes of the same dictionary as the property).              Maximum number of class properties returned is 2000. In the next version of the API this option probably will be removed.              Preferred way to get the classes is by using api/Property/Classes/v1 (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (PropertyContractV4)</returns>
     public async Task<ApiResponse<PropertyContractV4>> PropertyGetAsyncWithHttpInfo (string uri, bool? includeClasses = null, string languageCode = null)
     {
@@ -583,7 +583,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="getReverseRelations">Get either the forward or the reverse relations</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>PropertyRelationsContractV1</returns>
     public PropertyRelationsContractV1 PropertyRelationsGet (string propertyUri, bool? getReverseRelations, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -599,7 +599,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="getReverseRelations">Get either the forward or the reverse relations</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>ApiResponse of PropertyRelationsContractV1</returns>
     public ApiResponse< PropertyRelationsContractV1 > PropertyRelationsGetWithHttpInfo (string propertyUri, bool? getReverseRelations, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -671,7 +671,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="getReverseRelations">Get either the forward or the reverse relations</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of PropertyRelationsContractV1</returns>
     public async Task<PropertyRelationsContractV1> PropertyRelationsGetAsync (string propertyUri, bool? getReverseRelations, int? offset = null, int? limit = null, string languageCode = null)
     {
@@ -688,7 +688,7 @@ public partial class PropertyApi : IPropertyApi
     /// <param name="getReverseRelations">Get either the forward or the reverse relations</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
-    /// <param name="languageCode">Specify language (case sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
+    /// <param name="languageCode">Specify language (case-sensitive). For those items the text is not available in the requested language, the text will be returned in the default language of the dictionary (optional)</param>
     /// <returns>Task of ApiResponse (PropertyRelationsContractV1)</returns>
     public async Task<ApiResponse<PropertyRelationsContractV1>> PropertyRelationsGetAsyncWithHttpInfo (string propertyUri, bool? getReverseRelations, int? offset = null, int? limit = null, string languageCode = null)
     {

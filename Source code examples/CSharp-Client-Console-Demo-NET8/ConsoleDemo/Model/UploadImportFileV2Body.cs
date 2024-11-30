@@ -30,7 +30,7 @@ public partial class UploadImportFileV2Body :  IEquatable<UploadImportFileV2Body
     public UploadImportFileV2Body(string organizationCode = default(string), byte[] formFile = default(byte[]), bool? validateOnly = default(bool?), bool? isTest = default(bool?))
     {
         // to ensure "organizationCode" is required (not null)
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
         {
             throw new InvalidDataException("organizationCode is a required property for UploadImportFileV2Body and cannot be null");
         }

@@ -208,7 +208,7 @@ public partial class PrivateDictionarySpecificAPIsApi : IPrivateDictionarySpecif
         if (body == null)
             throw new BsddApiException(400, "Missing required parameter 'body' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessAdd");
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessAdd");
         // verify the required parameter 'dictionaryCode' is set
         if (dictionaryCode == null)
@@ -300,7 +300,7 @@ public partial class PrivateDictionarySpecificAPIsApi : IPrivateDictionarySpecif
         if (body == null)
             throw new BsddApiException(400, "Missing required parameter 'body' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessAdd");
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessAdd");
         // verify the required parameter 'dictionaryCode' is set
         if (dictionaryCode == null)
@@ -391,7 +391,7 @@ public partial class PrivateDictionarySpecificAPIsApi : IPrivateDictionarySpecif
         if (body == null)
             throw new BsddApiException(400, "Missing required parameter 'body' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessDelete");
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessDelete");
         // verify the required parameter 'dictionaryCode' is set
         if (dictionaryCode == null)
@@ -483,7 +483,7 @@ public partial class PrivateDictionarySpecificAPIsApi : IPrivateDictionarySpecif
         if (body == null)
             throw new BsddApiException(400, "Missing required parameter 'body' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessDelete");
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling PrivateDictionarySpecificAPIsApi->OrganizationManagePrivateAccessDelete");
         // verify the required parameter 'dictionaryCode' is set
         if (dictionaryCode == null)

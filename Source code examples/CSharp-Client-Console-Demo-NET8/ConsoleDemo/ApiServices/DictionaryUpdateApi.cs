@@ -17,9 +17,8 @@ namespace ConsoleDemo.ApiServices;
 /// <summary>
 /// Represents a collection of functions to interact with the API endpoints
 /// </summary>
-public interface IDictionaryUpdateApi : IApiAccessor
+public interface IDictionaryUpdateApi
 {
-    #region Asynchronous Operations
     /// <summary>
     /// Delete all versions of a dictionary
     /// </summary>
@@ -30,31 +29,7 @@ public interface IDictionaryUpdateApi : IApiAccessor
     /// <param name="organizationCode"></param>
     /// <param name="code"></param>
     /// <returns>Task of void</returns>
-    Task DictionaryUpdateDeleteAsync (string organizationCode, string code);
-
-    /// <summary>
-    /// Delete all versions of a dictionary
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <returns>Task of ApiResponse</returns>
-    Task<ApiResponse<object>> DictionaryUpdateDeleteAsyncWithHttpInfo (string organizationCode, string code);
-    /// <summary>
-    /// Delete a dictionary version
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <returns>Task of void</returns>
-    Task DictionaryUpdateDeleteVersionAsync (string organizationCode, string code, string version);
+    Task DictionaryUpdateDeleteAsync (string organizationCode, string code, CancellationToken ct = default);
 
     /// <summary>
     /// Delete a dictionary version
@@ -66,8 +41,9 @@ public interface IDictionaryUpdateApi : IApiAccessor
     /// <param name="organizationCode"></param>
     /// <param name="code"></param>
     /// <param name="version"></param>
-    /// <returns>Task of ApiResponse</returns>
-    Task<ApiResponse<object>> DictionaryUpdateDeleteVersionAsyncWithHttpInfo (string organizationCode, string code, string version);
+    /// <returns>Task of void</returns>
+    Task DictionaryUpdateDeleteVersionAsync (string organizationCode, string code, string version, CancellationToken ct = default);
+
     /// <summary>
     /// Update the status of a Dictionary
     /// </summary>
@@ -80,21 +56,8 @@ public interface IDictionaryUpdateApi : IApiAccessor
     /// <param name="version"></param>
     /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
     /// <returns>Task of void</returns>
-    Task DictionaryUpdateStatusAsync (string organizationCode, string code, string version, string body = null);
+    Task DictionaryUpdateStatusAsync (string organizationCode, string code, string version, string? body = null, CancellationToken ct = default);
 
-    /// <summary>
-    /// Update the status of a Dictionary
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
-    /// <returns>Task of ApiResponse</returns>
-    Task<ApiResponse<object>> DictionaryUpdateStatusAsyncWithHttpInfo (string organizationCode, string code, string version, string body = null);
     /// <summary>
     /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail.
     /// </summary>
@@ -107,580 +70,69 @@ public interface IDictionaryUpdateApi : IApiAccessor
     /// <param name="validateOnly"> (optional)</param>
     /// <param name="isTest"> (optional)</param>
     /// <returns>Task of UploadImportFileResultV2</returns>
-    Task<UploadImportFileResultV2> UploadImportFilePostAsync (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null);
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail.
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of ApiResponse (UploadImportFileResultV2)</returns>
-    Task<ApiResponse<UploadImportFileResultV2>> UploadImportFilePostAsyncWithHttpInfo (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null);
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of UploadImportFileResultV1</returns>
-    Task<UploadImportFileResultV1> UploadImportFileV1PostAsync (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null);
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of ApiResponse (UploadImportFileResultV1)</returns>
-    Task<ApiResponse<UploadImportFileResultV1>> UploadImportFileV1PostAsyncWithHttpInfo (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null);
-    #endregion Asynchronous Operations
+    Task<UploadImportFileResultV2> UploadImportFilePostAsync (string? organizationCode = null, byte[]? formFile = null, bool? validateOnly = null, bool? isTest = null, CancellationToken ct = default);
 }
 
 /// <summary>
 /// Represents a collection of functions to interact with the API endpoints
 /// </summary>
-public partial class DictionaryUpdateApi : IDictionaryUpdateApi
+public class DictionaryUpdateApi(BsddApiClient bsddApiClient) : IDictionaryUpdateApi
 {
-    private ExceptionFactory _exceptionFactory = (name, response) => null;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DictionaryUpdateApi"/> class.
-    /// </summary>
-    /// <returns></returns>
-    public DictionaryUpdateApi(string basePath)
-    {
-        Configuration = new Configuration { BasePath = basePath };
-
-        ExceptionFactory = Configuration.DefaultExceptionFactory;
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DictionaryUpdateApi"/> class
-    /// </summary>
-    /// <returns></returns>
-    public DictionaryUpdateApi()
-    {
-        Configuration = Configuration.Default;
-
-        ExceptionFactory = Configuration.DefaultExceptionFactory;
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DictionaryUpdateApi"/> class
-    /// using Configuration object
-    /// </summary>
-    /// <param name="configuration">An instance of Configuration</param>
-    /// <returns></returns>
-    public DictionaryUpdateApi(Configuration configuration = null)
-    {
-        if (configuration == null) // use the default one in Configuration
-            Configuration = Configuration.Default;
-        else
-            Configuration = configuration;
-
-        ExceptionFactory = Configuration.DefaultExceptionFactory;
-    }
-
-    /// <summary>
-    /// Gets the base path of the API client.
-    /// </summary>
-    /// <value>The base path</value>
-    public string GetBasePath()
-    {
-        return Configuration.ApiClient.RestClient.Options.BaseUrl.ToString();
-    }
-
-    /// <summary>
-    /// Sets the base path of the API client.
-    /// </summary>
-    /// <value>The base path</value>
-    [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
-    public void SetBasePath(string basePath)
-    {
-        // do nothing
-    }
-
-    /// <summary>
-    /// Gets or sets the configuration object
-    /// </summary>
-    /// <value>An instance of the Configuration</value>
-    public Configuration Configuration {get; set;}
-
-    /// <summary>
-    /// Provides a factory method hook for the creation of exceptions.
-    /// </summary>
-    public ExceptionFactory ExceptionFactory
-    {
-        get
-        {
-            if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-            {
-                throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-            }
-            return _exceptionFactory;
-        }
-        set { _exceptionFactory = value; }
-    }
-
-    /// <summary>
-    /// Gets the default header.
-    /// </summary>
-    /// <returns>Dictionary of HTTP header</returns>
-    [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-    public IDictionary<string, string> DefaultHeader()
-    {
-        return new ReadOnlyDictionary<string, string>(Configuration.DefaultHeader);
-    }
-
-    /// <summary>
-    /// Add default header.
-    /// </summary>
-    /// <param name="key">Header field name.</param>
-    /// <param name="value">Header field value.</param>
-    /// <returns></returns>
-    [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
-    public void AddDefaultHeader(string key, string value)
-    {
-        Configuration.AddDefaultHeader(key, value);
-    }
-
     /// <summary>
     /// Delete all versions of a dictionary 
     /// </summary>
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="organizationCode"></param>
     /// <param name="code"></param>
-    /// <returns></returns>
-    public void DictionaryUpdateDelete (string organizationCode, string code)
-    {
-        DictionaryUpdateDeleteWithHttpInfo(organizationCode, code);
-    }
-
-    /// <summary>
-    /// Delete all versions of a dictionary 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <returns>ApiResponse of Object(void)</returns>
-    public ApiResponse<object> DictionaryUpdateDeleteWithHttpInfo (string organizationCode, string code)
+    /// <returns>Task of ApiResponse</returns>
+    public async Task DictionaryUpdateDeleteAsyncWithHttpInfo (string organizationCode, string code, CancellationToken ct = default)
     {
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling DictionaryUpdateApi->DictionaryUpdateDelete");
         // verify the required parameter 'code' is set
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
             throw new BsddApiException(400, "Missing required parameter 'code' when calling DictionaryUpdateApi->DictionaryUpdateDelete");
 
         var localVarPath = "/api/Dictionary/v1/{organizationCode}/{code}";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarPathParams.Add("organizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // path parameter
-        if (code != null) localVarPathParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // path parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
+        var localVarPathParams = new Dictionary<string, string?>
         {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
+            { "organizationCode", ApiClientHelper.ParameterToString(organizationCode) }, // path parameter
+            { "code", ApiClientHelper.ParameterToString(code) } // path parameter
+        };
 
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) Configuration.ApiClient.CallApi(localVarPath,
-            Method.Delete, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("DictionaryUpdateDelete", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<object>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            null);
+        await bsddApiClient.DeleteSecureAsync(localVarPath, localVarPathParams, ct);
     }
 
     /// <summary>
-    /// Delete all versions of a dictionary 
+    /// Delete a dictionary version 
     /// </summary>
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="organizationCode"></param>
     /// <param name="code"></param>
-    /// <returns>Task of void</returns>
-    public async Task DictionaryUpdateDeleteAsync (string organizationCode, string code)
-    {
-        await DictionaryUpdateDeleteAsyncWithHttpInfo(organizationCode, code);
-
-    }
-
-    /// <summary>
-    /// Delete all versions of a dictionary 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
+    /// <param name="version"></param>
     /// <returns>Task of ApiResponse</returns>
-    public async Task<ApiResponse<object>> DictionaryUpdateDeleteAsyncWithHttpInfo (string organizationCode, string code)
+    public async Task DictionaryUpdateDeleteVersionAsync (string organizationCode, string code, string version, CancellationToken ct = default)
     {
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
-            throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling DictionaryUpdateApi->DictionaryUpdateDelete");
-        // verify the required parameter 'code' is set
-        if (code == null)
-            throw new BsddApiException(400, "Missing required parameter 'code' when calling DictionaryUpdateApi->DictionaryUpdateDelete");
-
-        var localVarPath = "/api/Dictionary/v1/{organizationCode}/{code}";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarPathParams.Add("organizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // path parameter
-        if (code != null) localVarPathParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // path parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-            Method.Delete, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("DictionaryUpdateDelete", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<object>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            null);
-    }
-
-    /// <summary>
-    /// Delete a dictionary version 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <returns></returns>
-    public void DictionaryUpdateDeleteVersion (string organizationCode, string code, string version)
-    {
-        DictionaryUpdateDeleteVersionWithHttpInfo(organizationCode, code, version);
-    }
-
-    /// <summary>
-    /// Delete a dictionary version 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <returns>ApiResponse of Object(void)</returns>
-    public ApiResponse<object> DictionaryUpdateDeleteVersionWithHttpInfo (string organizationCode, string code, string version)
-    {
-        // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling DictionaryUpdateApi->DictionaryUpdateDeleteVersion");
         // verify the required parameter 'code' is set
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
             throw new BsddApiException(400, "Missing required parameter 'code' when calling DictionaryUpdateApi->DictionaryUpdateDeleteVersion");
         // verify the required parameter 'version' is set
-        if (version == null)
+        if (string.IsNullOrWhiteSpace(version))
             throw new BsddApiException(400, "Missing required parameter 'version' when calling DictionaryUpdateApi->DictionaryUpdateDeleteVersion");
 
         var localVarPath = "/api/Dictionary/v1/{organizationCode}/{code}/{version}";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
+        var localVarPathParams = new Dictionary<string, string?>
+        {
+            { "organizationCode", ApiClientHelper.ParameterToString(organizationCode) }, // path parameter
+            { "code", ApiClientHelper.ParameterToString(code) }, // path parameter
+            { "version", ApiClientHelper.ParameterToString(version) } // path parameter
         };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarPathParams.Add("organizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // path parameter
-        if (code != null) localVarPathParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // path parameter
-        if (version != null) localVarPathParams.Add("version", Configuration.ApiClient.ParameterToString(version)); // path parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) Configuration.ApiClient.CallApi(localVarPath,
-            Method.Delete, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("DictionaryUpdateDeleteVersion", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<object>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            null);
-    }
-
-    /// <summary>
-    /// Delete a dictionary version 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <returns>Task of void</returns>
-    public async Task DictionaryUpdateDeleteVersionAsync (string organizationCode, string code, string version)
-    {
-        await DictionaryUpdateDeleteVersionAsyncWithHttpInfo(organizationCode, code, version);
-
-    }
-
-    /// <summary>
-    /// Delete a dictionary version 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <returns>Task of ApiResponse</returns>
-    public async Task<ApiResponse<object>> DictionaryUpdateDeleteVersionAsyncWithHttpInfo (string organizationCode, string code, string version)
-    {
-        // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
-            throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling DictionaryUpdateApi->DictionaryUpdateDeleteVersion");
-        // verify the required parameter 'code' is set
-        if (code == null)
-            throw new BsddApiException(400, "Missing required parameter 'code' when calling DictionaryUpdateApi->DictionaryUpdateDeleteVersion");
-        // verify the required parameter 'version' is set
-        if (version == null)
-            throw new BsddApiException(400, "Missing required parameter 'version' when calling DictionaryUpdateApi->DictionaryUpdateDeleteVersion");
-
-        var localVarPath = "/api/Dictionary/v1/{organizationCode}/{code}/{version}";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarPathParams.Add("organizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // path parameter
-        if (code != null) localVarPathParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // path parameter
-        if (version != null) localVarPathParams.Add("version", Configuration.ApiClient.ParameterToString(version)); // path parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-            Method.Delete, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("DictionaryUpdateDeleteVersion", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<object>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            null);
-    }
-
-    /// <summary>
-    /// Update the status of a Dictionary 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
-    /// <returns></returns>
-    public void DictionaryUpdateStatus (string organizationCode, string code, string version, string body = null)
-    {
-        DictionaryUpdateStatusWithHttpInfo(organizationCode, code, version, body);
-    }
-
-    /// <summary>
-    /// Update the status of a Dictionary 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
-    /// <returns>ApiResponse of Object(void)</returns>
-    public ApiResponse<object> DictionaryUpdateStatusWithHttpInfo (string organizationCode, string code, string version, string body = null)
-    {
-        // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
-            throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling DictionaryUpdateApi->DictionaryUpdateStatus");
-        // verify the required parameter 'code' is set
-        if (code == null)
-            throw new BsddApiException(400, "Missing required parameter 'code' when calling DictionaryUpdateApi->DictionaryUpdateStatus");
-        // verify the required parameter 'version' is set
-        if (version == null)
-            throw new BsddApiException(400, "Missing required parameter 'version' when calling DictionaryUpdateApi->DictionaryUpdateStatus");
-
-        var localVarPath = "/api/Dictionary/v1/{organizationCode}/{code}/{version}";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-            "application/json", 
-            "text/json", 
-            "application/_*+json"
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarPathParams.Add("organizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // path parameter
-        if (code != null) localVarPathParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // path parameter
-        if (version != null) localVarPathParams.Add("version", Configuration.ApiClient.ParameterToString(version)); // path parameter
-        if (body != null && body.GetType() != typeof(byte[]))
-        {
-            localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-        }
-        else
-        {
-            localVarPostBody = body; // byte array
-        }
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) Configuration.ApiClient.CallApi(localVarPath,
-            Method.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("DictionaryUpdateStatus", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<object>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            null);
-    }
-
-    /// <summary>
-    /// Update the status of a Dictionary 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"></param>
-    /// <param name="code"></param>
-    /// <param name="version"></param>
-    /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
-    /// <returns>Task of void</returns>
-    public async Task DictionaryUpdateStatusAsync (string organizationCode, string code, string version, string body = null)
-    {
-        await DictionaryUpdateStatusAsyncWithHttpInfo(organizationCode, code, version, body);
-
+        await bsddApiClient.DeleteSecureAsync(localVarPath, localVarPathParams, ct);
     }
 
     /// <summary>
@@ -692,177 +144,27 @@ public partial class DictionaryUpdateApi : IDictionaryUpdateApi
     /// <param name="version"></param>
     /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
     /// <returns>Task of ApiResponse</returns>
-    public async Task<ApiResponse<object>> DictionaryUpdateStatusAsyncWithHttpInfo (string organizationCode, string code, string version, string body = null)
+    public async Task DictionaryUpdateStatusAsync(string organizationCode, string code, string version, string? body = null, CancellationToken ct = default)
     {
         // verify the required parameter 'organizationCode' is set
-        if (organizationCode == null)
+        if (string.IsNullOrWhiteSpace(organizationCode))
             throw new BsddApiException(400, "Missing required parameter 'organizationCode' when calling DictionaryUpdateApi->DictionaryUpdateStatus");
         // verify the required parameter 'code' is set
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
             throw new BsddApiException(400, "Missing required parameter 'code' when calling DictionaryUpdateApi->DictionaryUpdateStatus");
         // verify the required parameter 'version' is set
-        if (version == null)
+        if (string.IsNullOrWhiteSpace(version))
             throw new BsddApiException(400, "Missing required parameter 'version' when calling DictionaryUpdateApi->DictionaryUpdateStatus");
 
         var localVarPath = "/api/Dictionary/v1/{organizationCode}/{code}/{version}";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-            "application/json", 
-            "text/json", 
-            "application/_*+json"
+        var localVarPathParams = new Dictionary<string, string?>
+        {
+            { "organizationCode", ApiClientHelper.ParameterToString(organizationCode) }, // path parameter
+            { "code", ApiClientHelper.ParameterToString(code) }, // path parameter
+            { "version", ApiClientHelper.ParameterToString(version) } // path parameter
         };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarPathParams.Add("organizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // path parameter
-        if (code != null) localVarPathParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // path parameter
-        if (version != null) localVarPathParams.Add("version", Configuration.ApiClient.ParameterToString(version)); // path parameter
-        if (body != null && body.GetType() != typeof(byte[]))
-        {
-            localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-        }
-        else
-        {
-            localVarPostBody = body; // byte array
-        }
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-            Method.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("DictionaryUpdateStatus", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<object>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            null);
-    }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail. 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>UploadImportFileResultV2</returns>
-    public UploadImportFileResultV2 UploadImportFilePost (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-        ApiResponse<UploadImportFileResultV2> localVarResponse = UploadImportFilePostWithHttpInfo(organizationCode, formFile, validateOnly, isTest);
-        return localVarResponse.Data;
-    }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail. 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>ApiResponse of UploadImportFileResultV2</returns>
-    public ApiResponse< UploadImportFileResultV2 > UploadImportFilePostWithHttpInfo (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-
-        var localVarPath = "/api/UploadImportFile/v2";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-            "multipart/form-data"
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-            "text/plain",
-            "application/json",
-            "text/json",
-            "application/xml",
-            "text/xml",
-            "text/html",
-            "text/turtle",
-            "application/x-turtle",
-            "application/rdf+xml"
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarFormParams.Add("OrganizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // form parameter
-        if (formFile != null) localVarFileParams.Add("FormFile", Configuration.ApiClient.ParameterToFile("FormFile", formFile));
-        if (validateOnly != null) localVarFormParams.Add("ValidateOnly", Configuration.ApiClient.ParameterToString(validateOnly)); // form parameter
-        if (isTest != null) localVarFormParams.Add("IsTest", Configuration.ApiClient.ParameterToString(isTest)); // form parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) Configuration.ApiClient.CallApi(localVarPath,
-            Method.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("UploadImportFilePost", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<UploadImportFileResultV2>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            (UploadImportFileResultV2) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadImportFileResultV2)));
-    }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail. 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of UploadImportFileResultV2</returns>
-    public async Task<UploadImportFileResultV2> UploadImportFilePostAsync (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-        ApiResponse<UploadImportFileResultV2> localVarResponse = await UploadImportFilePostAsyncWithHttpInfo(organizationCode, formFile, validateOnly, isTest);
-        return localVarResponse.Data;
-
+        await bsddApiClient.PutSecureAsync(localVarPath, localVarPathParams, ct);
     }
 
     /// <summary>
@@ -874,239 +176,18 @@ public partial class DictionaryUpdateApi : IDictionaryUpdateApi
     /// <param name="validateOnly"> (optional)</param>
     /// <param name="isTest"> (optional)</param>
     /// <returns>Task of ApiResponse (UploadImportFileResultV2)</returns>
-    public async Task<ApiResponse<UploadImportFileResultV2>> UploadImportFilePostAsyncWithHttpInfo (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
+    public async Task<UploadImportFileResultV2> UploadImportFilePostAsync (string? organizationCode = null, byte[]? formFile = null, bool? validateOnly = null, bool? isTest = null, CancellationToken ct = default)
     {
-
         var localVarPath = "/api/UploadImportFile/v2";
         var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
         var localVarFormParams = new Dictionary<string, string>();
         var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-            "multipart/form-data"
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-            "text/plain",
-            "application/json",
-            "text/json",
-            "application/xml",
-            "text/xml",
-            "text/html",
-            "text/turtle",
-            "application/x-turtle",
-            "application/rdf+xml"
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
         if (organizationCode != null) localVarFormParams.Add("OrganizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // form parameter
         if (formFile != null) localVarFileParams.Add("FormFile", Configuration.ApiClient.ParameterToFile("FormFile", formFile));
         if (validateOnly != null) localVarFormParams.Add("ValidateOnly", Configuration.ApiClient.ParameterToString(validateOnly)); // form parameter
         if (isTest != null) localVarFormParams.Add("IsTest", Configuration.ApiClient.ParameterToString(isTest)); // form parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
 
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-            Method.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("UploadImportFilePost", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<UploadImportFileResultV2>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            (UploadImportFileResultV2) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadImportFileResultV2)));
+        return await bsddApiClient.PostSecureAsync<UploadImportFileResultV2>(localVarPath, localVarFormParams, localVarFileParams, localVarPathParams, ct);
     }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>UploadImportFileResultV1</returns>
-    public UploadImportFileResultV1 UploadImportFileV1Post (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-        ApiResponse<UploadImportFileResultV1> localVarResponse = UploadImportFileV1PostWithHttpInfo(organizationCode, formFile, validateOnly, isTest);
-        return localVarResponse.Data;
-    }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>ApiResponse of UploadImportFileResultV1</returns>
-    public ApiResponse< UploadImportFileResultV1 > UploadImportFileV1PostWithHttpInfo (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-
-        var localVarPath = "/api/UploadImportFile/v1";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-            "multipart/form-data"
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-            "text/plain",
-            "application/json",
-            "text/json",
-            "application/xml",
-            "text/xml",
-            "text/html",
-            "text/turtle",
-            "application/x-turtle",
-            "application/rdf+xml"
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarFormParams.Add("OrganizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // form parameter
-        if (formFile != null) localVarFileParams.Add("FormFile", Configuration.ApiClient.ParameterToFile("FormFile", formFile));
-        if (validateOnly != null) localVarFormParams.Add("ValidateOnly", Configuration.ApiClient.ParameterToString(validateOnly)); // form parameter
-        if (isTest != null) localVarFormParams.Add("IsTest", Configuration.ApiClient.ParameterToString(isTest)); // form parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) Configuration.ApiClient.CallApi(localVarPath,
-            Method.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("UploadImportFileV1Post", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<UploadImportFileResultV1>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            (UploadImportFileResultV1) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadImportFileResultV1)));
-    }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of UploadImportFileResultV1</returns>
-    public async Task<UploadImportFileResultV1> UploadImportFileV1PostAsync (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-        ApiResponse<UploadImportFileResultV1> localVarResponse = await UploadImportFileV1PostAsyncWithHttpInfo(organizationCode, formFile, validateOnly, isTest);
-        return localVarResponse.Data;
-
-    }
-
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of ApiResponse (UploadImportFileResultV1)</returns>
-    public async Task<ApiResponse<UploadImportFileResultV1>> UploadImportFileV1PostAsyncWithHttpInfo (string organizationCode = null, byte[] formFile = null, bool? validateOnly = null, bool? isTest = null)
-    {
-
-        var localVarPath = "/api/UploadImportFile/v1";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarQueryParams = new List<KeyValuePair<string, string>>();
-        var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-        object localVarPostBody = null;
-
-        // to determine the Content-Type header
-        string[] localVarHttpContentTypes = new string[] {
-            "multipart/form-data"
-        };
-        string localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-        // to determine the Accept header
-        string[] localVarHttpHeaderAccepts = new string[] {
-            "text/plain",
-            "application/json",
-            "text/json",
-            "application/xml",
-            "text/xml",
-            "text/html",
-            "text/turtle",
-            "application/x-turtle",
-            "application/rdf+xml"
-        };
-        string localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-        if (localVarHttpHeaderAccept != null)
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-        if (organizationCode != null) localVarFormParams.Add("OrganizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // form parameter
-        if (formFile != null) localVarFileParams.Add("FormFile", Configuration.ApiClient.ParameterToFile("FormFile", formFile));
-        if (validateOnly != null) localVarFormParams.Add("ValidateOnly", Configuration.ApiClient.ParameterToString(validateOnly)); // form parameter
-        if (isTest != null) localVarFormParams.Add("IsTest", Configuration.ApiClient.ParameterToString(isTest)); // form parameter
-        // authentication (aad-jwt) required
-        // oauth required
-        if (!string.IsNullOrEmpty(Configuration.AccessToken))
-        {
-            localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
-        }
-
-        // make the HTTP request
-        RestResponse localVarResponse = (RestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-            Method.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-            localVarPathParams, localVarHttpContentType);
-
-        int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-        if (ExceptionFactory != null)
-        {
-            Exception exception = ExceptionFactory("UploadImportFileV1Post", localVarResponse);
-            if (exception != null) throw exception;
-        }
-
-        return new ApiResponse<UploadImportFileResultV1>(localVarStatusCode,
-            localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-            (UploadImportFileResultV1) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadImportFileResultV1)));
-    }
-
 }

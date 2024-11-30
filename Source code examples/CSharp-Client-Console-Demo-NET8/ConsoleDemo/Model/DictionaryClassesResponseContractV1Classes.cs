@@ -48,7 +48,7 @@ public partial class DictionaryClassesResponseContractV1Classes :  IEquatable<Di
     public DictionaryClassesResponseContractV1Classes(string code = default(string), string uri = default(string), string name = default(string), string version = default(string), string organizationCodeOwner = default(string), string organizationNameOwner = default(string), string changeRequestEmail = default(string), string defaultLanguageCode = default(string), bool? isLatestVersion = default(bool?), bool? isVerified = default(bool?), string license = default(string), string licenseUrl = default(string), string qualityAssuranceProcedure = default(string), string qualityAssuranceProcedureUrl = default(string), string status = default(string), string moreInfoUrl = default(string), DateTime? releaseDate = default(DateTime?), DateTime? lastUpdatedUtc = default(DateTime?), List<ClassListItemContractV1Classes> classes = default(List<ClassListItemContractV1Classes>), int? classesTotalCount = default(int?), int? classesOffset = default(int?), int? classesCount = default(int?))
     {
         // to ensure "code" is required (not null)
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
         {
             throw new InvalidDataException("code is a required property for DictionaryClassesResponseContractV1Classes and cannot be null");
         }
@@ -75,7 +75,7 @@ public partial class DictionaryClassesResponseContractV1Classes :  IEquatable<Di
             this.Name = name;
         }
         // to ensure "version" is required (not null)
-        if (version == null)
+        if (string.IsNullOrWhiteSpace(version))
         {
             throw new InvalidDataException("version is a required property for DictionaryClassesResponseContractV1Classes and cannot be null");
         }

@@ -58,8 +58,8 @@ public interface ISearchApi : IApiAccessor
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="dictionaryUri">The uri of the Dictionary to filter on (required). The \&quot;latest\&quot; option is supported, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/latest</param>
     /// <param name="searchText">The text to search for (case and accent insensitive) (optional)</param>
-    /// <param name="languageCode">The ISO language code to search in and to return the text in (case sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
-    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case sensitive) (optional)</param>
+    /// <param name="languageCode">The ISO language code to search in and to return the text in (case-sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
+    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case-sensitive) (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
     /// <returns>Task of SearchInDictionaryResponseContractV1</returns>
@@ -74,8 +74,8 @@ public interface ISearchApi : IApiAccessor
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="dictionaryUri">The uri of the Dictionary to filter on (required). The \&quot;latest\&quot; option is supported, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/latest</param>
     /// <param name="searchText">The text to search for (case and accent insensitive) (optional)</param>
-    /// <param name="languageCode">The ISO language code to search in and to return the text in (case sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
-    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case sensitive) (optional)</param>
+    /// <param name="languageCode">The ISO language code to search in and to return the text in (case-sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
+    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case-sensitive) (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
     /// <returns>Task of ApiResponse (SearchInDictionaryResponseContractV1)</returns>
@@ -436,8 +436,8 @@ public partial class SearchApi : ISearchApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="dictionaryUri">The uri of the Dictionary to filter on (required). The \&quot;latest\&quot; option is supported, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/latest</param>
     /// <param name="searchText">The text to search for (case and accent insensitive) (optional)</param>
-    /// <param name="languageCode">The ISO language code to search in and to return the text in (case sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
-    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case sensitive) (optional)</param>
+    /// <param name="languageCode">The ISO language code to search in and to return the text in (case-sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
+    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case-sensitive) (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
     /// <returns>SearchInDictionaryResponseContractV1</returns>
@@ -453,8 +453,8 @@ public partial class SearchApi : ISearchApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="dictionaryUri">The uri of the Dictionary to filter on (required). The \&quot;latest\&quot; option is supported, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/latest</param>
     /// <param name="searchText">The text to search for (case and accent insensitive) (optional)</param>
-    /// <param name="languageCode">The ISO language code to search in and to return the text in (case sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
-    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case sensitive) (optional)</param>
+    /// <param name="languageCode">The ISO language code to search in and to return the text in (case-sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
+    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case-sensitive) (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
     /// <returns>ApiResponse of SearchInDictionaryResponseContractV1</returns>
@@ -524,8 +524,8 @@ public partial class SearchApi : ISearchApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="dictionaryUri">The uri of the Dictionary to filter on (required). The \&quot;latest\&quot; option is supported, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/latest</param>
     /// <param name="searchText">The text to search for (case and accent insensitive) (optional)</param>
-    /// <param name="languageCode">The ISO language code to search in and to return the text in (case sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
-    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case sensitive) (optional)</param>
+    /// <param name="languageCode">The ISO language code to search in and to return the text in (case-sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
+    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case-sensitive) (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
     /// <returns>Task of SearchInDictionaryResponseContractV1</returns>
@@ -542,8 +542,8 @@ public partial class SearchApi : ISearchApi
     /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
     /// <param name="dictionaryUri">The uri of the Dictionary to filter on (required). The \&quot;latest\&quot; option is supported, e.g. https://identifier.buildingsmart.org/uri/bs-agri/fruitvegs/latest</param>
     /// <param name="searchText">The text to search for (case and accent insensitive) (optional)</param>
-    /// <param name="languageCode">The ISO language code to search in and to return the text in (case sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
-    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case sensitive) (optional)</param>
+    /// <param name="languageCode">The ISO language code to search in and to return the text in (case-sensitive)  If no language code specified or the text is not available in the requested language, the text will be returned in the default language of the dictionary.  If a language code has been given, the search takes place in texts of that language, otherwise searches will be done in the default language of the dictionary.  If an invalid or not supported language code is given, a Bad Request will be returned. (optional)</param>
+    /// <param name="relatedIfcEntity">The official IFC entity name to filter on (case-sensitive) (optional)</param>
     /// <param name="offset">Zero-based offset of the first item to be returned. Default is 0. (optional)</param>
     /// <param name="limit">Limit number of items to be returned. The default and maximum number of items returned is 1000. When Offset is specified, then the default limit is 100. (optional)</param>
     /// <returns>Task of ApiResponse (SearchInDictionaryResponseContractV1)</returns>

@@ -53,7 +53,7 @@ public partial class TextSearchResponseDictionaryContractV2 :  IEquatable<TextSe
             this.OrganizationName = organizationName;
         }
         // to ensure "code" is required (not null)
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
         {
             throw new InvalidDataException("code is a required property for TextSearchResponseDictionaryContractV2 and cannot be null");
         }
@@ -71,7 +71,7 @@ public partial class TextSearchResponseDictionaryContractV2 :  IEquatable<TextSe
             this.Name = name;
         }
         // to ensure "version" is required (not null)
-        if (version == null)
+        if (string.IsNullOrWhiteSpace(version))
         {
             throw new InvalidDataException("version is a required property for TextSearchResponseDictionaryContractV2 and cannot be null");
         }

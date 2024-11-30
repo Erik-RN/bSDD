@@ -48,7 +48,7 @@ public partial class HierarchyItemContractV1 :  IEquatable<HierarchyItemContract
             this.Name = name;
         }
         // to ensure "code" is required (not null)
-        if (code == null)
+        if (string.IsNullOrWhiteSpace(code))
         {
             throw new InvalidDataException("code is a required property for HierarchyItemContractV1 and cannot be null");
         }
