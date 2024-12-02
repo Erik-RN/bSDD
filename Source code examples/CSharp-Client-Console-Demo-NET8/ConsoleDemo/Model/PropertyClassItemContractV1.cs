@@ -40,7 +40,7 @@ public partial class PropertyClassItemContractV1 :  IEquatable<PropertyClassItem
             this.Name = name;
         }
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for PropertyClassItemContractV1 and cannot be null");
         }
@@ -111,15 +111,6 @@ public partial class PropertyClassItemContractV1 :  IEquatable<PropertyClassItem
         sb.Append("  PropertySet: ").Append(PropertySet).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

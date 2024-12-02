@@ -54,7 +54,7 @@ public partial class DictionaryContractV1 :  IEquatable<DictionaryContractV1>, I
             this.Code = code;
         }
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for DictionaryContractV1 and cannot be null");
         }
@@ -290,15 +290,6 @@ public partial class DictionaryContractV1 :  IEquatable<DictionaryContractV1>, I
         sb.Append("  AvailableLanguages: ").Append(AvailableLanguages).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

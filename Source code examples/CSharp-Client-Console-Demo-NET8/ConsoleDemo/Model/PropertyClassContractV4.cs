@@ -105,15 +105,6 @@ public partial class PropertyClassContractV4 :  IEquatable<PropertyClassContract
         sb.Append("}\n");
         return sb.ToString();
     }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
-    }
 
     /// <summary>
     /// Returns true if objects are equal

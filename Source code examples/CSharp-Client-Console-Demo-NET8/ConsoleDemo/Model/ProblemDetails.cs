@@ -39,15 +39,6 @@ public partial class ProblemDetails : Dictionary<string, object>,  IEquatable<Pr
         sb.Append("}\n");
         return sb.ToString();
     }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public override string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
-    }
 
     /// <summary>
     /// Returns true if objects are equal

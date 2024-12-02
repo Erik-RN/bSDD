@@ -35,7 +35,7 @@ public partial class TextSearchResponseDictionaryContractV2 :  IEquatable<TextSe
     public TextSearchResponseDictionaryContractV2(string uri = default(string), string organizationName = default(string), string code = default(string), string name = default(string), string version = default(string), string status = default(string), List<LanguageContractV1> languages = default(List<LanguageContractV1>), bool? isLatestVersion = default(bool?), bool? isVerified = default(bool?))
     {
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for TextSearchResponseDictionaryContractV2 and cannot be null");
         }
@@ -190,15 +190,6 @@ public partial class TextSearchResponseDictionaryContractV2 :  IEquatable<TextSe
         sb.Append("  IsVerified: ").Append(IsVerified).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

@@ -88,7 +88,12 @@ public class BsddApiClient(IHttpClientFactory httpClientFactory, BsddApiOptions 
         }
     }
 
-    public async Task DeleteSecureAsync(string localVarPath, Dictionary<string, string?> localVarPathParams, CancellationToken ct)
+    public async Task DeleteSecureAsync(string localVarPath, Dictionary<string, string?> localVarPathParams, object? body, CancellationToken ct = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task PostSecureAsync(string localVarPath, Dictionary<string, string?> localVarPathParams, object body, CancellationToken ct)
     {
         throw new NotImplementedException();
     }

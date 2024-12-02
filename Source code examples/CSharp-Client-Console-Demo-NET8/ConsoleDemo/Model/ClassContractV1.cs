@@ -86,7 +86,7 @@ public partial class ClassContractV1 :  IEquatable<ClassContractV1>, IValidatabl
             this.Name = name;
         }
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for ClassContractV1 and cannot be null");
         }
@@ -414,15 +414,6 @@ public partial class ClassContractV1 :  IEquatable<ClassContractV1>, IValidatabl
         sb.Append("  Hierarchy: ").Append(Hierarchy).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

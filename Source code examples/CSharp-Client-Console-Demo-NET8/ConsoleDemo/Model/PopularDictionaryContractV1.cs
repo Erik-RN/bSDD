@@ -29,7 +29,7 @@ public partial class PopularDictionaryContractV1 :  IEquatable<PopularDictionary
     public PopularDictionaryContractV1(string uri = default(string), string name = default(string), string organizationName = default(string))
     {
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for PopularDictionaryContractV1 and cannot be null");
         }
@@ -88,15 +88,6 @@ public partial class PopularDictionaryContractV1 :  IEquatable<PopularDictionary
         sb.Append("  OrganizationName: ").Append(OrganizationName).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

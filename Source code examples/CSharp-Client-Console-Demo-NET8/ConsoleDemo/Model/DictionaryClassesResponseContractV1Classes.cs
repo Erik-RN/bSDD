@@ -57,7 +57,7 @@ public partial class DictionaryClassesResponseContractV1Classes :  IEquatable<Di
             this.Code = code;
         }
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for DictionaryClassesResponseContractV1Classes and cannot be null");
         }
@@ -318,15 +318,6 @@ public partial class DictionaryClassesResponseContractV1Classes :  IEquatable<Di
         sb.Append("  ClassesCount: ").Append(ClassesCount).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

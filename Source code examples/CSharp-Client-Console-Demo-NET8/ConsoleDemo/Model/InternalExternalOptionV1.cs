@@ -15,7 +15,6 @@ namespace ConsoleDemo.Model;
 /// <summary>
 /// Defines InternalExternalOption.v1
 /// </summary>
-[JsonConverter(typeof(StringEnumConverter))]
 public enum InternalExternalOptionV1
 {
     /// <summary>
@@ -32,4 +31,5 @@ public enum InternalExternalOptionV1
     /// Enum NUMBER_2 for value: 2
     /// </summary>
     [EnumMember(Value = "2")]
-    NUMBER_2 = 3    }
+    NUMBER_2 = 3
+}

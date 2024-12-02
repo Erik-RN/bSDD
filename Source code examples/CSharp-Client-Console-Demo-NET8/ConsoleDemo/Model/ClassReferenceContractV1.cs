@@ -29,7 +29,7 @@ public partial class ClassReferenceContractV1 :  IEquatable<ClassReferenceContra
     public ClassReferenceContractV1(string uri = default(string), string name = default(string), string code = default(string))
     {
         // to ensure "uri" is required (not null)
-        if (uri == null)
+        if (string.IsNullOrWhiteSpace(uri))
         {
             throw new InvalidDataException("uri is a required property for ClassReferenceContractV1 and cannot be null");
         }
@@ -72,15 +72,6 @@ public partial class ClassReferenceContractV1 :  IEquatable<ClassReferenceContra
         sb.Append("  Code: ").Append(Code).Append("\n");
         sb.Append("}\n");
         return sb.ToString();
-    }
-  
-    /// <summary>
-    /// Returns the JSON string presentation of the object
-    /// </summary>
-    /// <returns>JSON string presentation of the object</returns>
-    public virtual string ToJson()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>

@@ -56,7 +56,7 @@ public interface IDictionaryUpdateApi
     /// <param name="version"></param>
     /// <param name="body">The new status of the dictionary. Only transitions allowed are: Preview --&gt; Active, Active --&gt; Inactive and Inactive --&gt; Active (optional)</param>
     /// <returns>Task of void</returns>
-    Task DictionaryUpdateStatusAsync (string organizationCode, string code, string version, string? body = null, CancellationToken ct = default);
+    Task DictionaryUpdateStatusAsync(string organizationCode, string code, string version, string? body = null, CancellationToken ct = default);
 
     /// <summary>
     /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail.
@@ -70,7 +70,7 @@ public interface IDictionaryUpdateApi
     /// <param name="validateOnly"> (optional)</param>
     /// <param name="isTest"> (optional)</param>
     /// <returns>Task of UploadImportFileResultV2</returns>
-    Task<UploadImportFileResultV2> UploadImportFilePostAsync (string? organizationCode = null, byte[]? formFile = null, bool? validateOnly = null, bool? isTest = null, CancellationToken ct = default);
+    // Task<UploadImportFileResultV2> UploadImportFilePostAsync(string? organizationCode = null, byte[]? formFile = null, bool? validateOnly = null, bool? isTest = null, CancellationToken ct = default);
 }
 
 /// <summary>
@@ -85,7 +85,7 @@ public class DictionaryUpdateApi(BsddApiClient bsddApiClient) : IDictionaryUpdat
     /// <param name="organizationCode"></param>
     /// <param name="code"></param>
     /// <returns>Task of ApiResponse</returns>
-    public async Task DictionaryUpdateDeleteAsyncWithHttpInfo (string organizationCode, string code, CancellationToken ct = default)
+    public async Task DictionaryUpdateDeleteAsync(string organizationCode, string code, CancellationToken ct = default)
     {
         // verify the required parameter 'organizationCode' is set
         if (string.IsNullOrWhiteSpace(organizationCode))
@@ -101,7 +101,7 @@ public class DictionaryUpdateApi(BsddApiClient bsddApiClient) : IDictionaryUpdat
             { "code", ApiClientHelper.ParameterToString(code) } // path parameter
         };
 
-        await bsddApiClient.DeleteSecureAsync(localVarPath, localVarPathParams, ct);
+        await bsddApiClient.DeleteSecureAsync(localVarPath, localVarPathParams, null, ct);
     }
 
     /// <summary>
@@ -132,7 +132,7 @@ public class DictionaryUpdateApi(BsddApiClient bsddApiClient) : IDictionaryUpdat
             { "version", ApiClientHelper.ParameterToString(version) } // path parameter
         };
 
-        await bsddApiClient.DeleteSecureAsync(localVarPath, localVarPathParams, ct);
+        await bsddApiClient.DeleteSecureAsync(localVarPath, localVarPathParams, null, ct);
     }
 
     /// <summary>
@@ -164,30 +164,32 @@ public class DictionaryUpdateApi(BsddApiClient bsddApiClient) : IDictionaryUpdat
             { "version", ApiClientHelper.ParameterToString(version) } // path parameter
         };
 
-        await bsddApiClient.PutSecureAsync(localVarPath, localVarPathParams, ct);
+        throw new NotImplementedException(nameof(DictionaryUpdateStatusAsync));
+        // await bsddApiClient.PutSecureAsync(localVarPath, localVarPathParams, ct);
     }
 
-    /// <summary>
-    /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail. 
-    /// </summary>
-    /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
-    /// <param name="organizationCode"> (optional)</param>
-    /// <param name="formFile"> (optional)</param>
-    /// <param name="validateOnly"> (optional)</param>
-    /// <param name="isTest"> (optional)</param>
-    /// <returns>Task of ApiResponse (UploadImportFileResultV2)</returns>
-    public async Task<UploadImportFileResultV2> UploadImportFilePostAsync (string? organizationCode = null, byte[]? formFile = null, bool? validateOnly = null, bool? isTest = null, CancellationToken ct = default)
-    {
-        var localVarPath = "/api/UploadImportFile/v2";
-        var localVarPathParams = new Dictionary<string, string>();
-        var localVarFormParams = new Dictionary<string, string>();
-        var localVarFileParams = new Dictionary<string, FileParameter>();
-
-        if (organizationCode != null) localVarFormParams.Add("OrganizationCode", Configuration.ApiClient.ParameterToString(organizationCode)); // form parameter
-        if (formFile != null) localVarFileParams.Add("FormFile", Configuration.ApiClient.ParameterToFile("FormFile", formFile));
-        if (validateOnly != null) localVarFormParams.Add("ValidateOnly", Configuration.ApiClient.ParameterToString(validateOnly)); // form parameter
-        if (isTest != null) localVarFormParams.Add("IsTest", Configuration.ApiClient.ParameterToString(isTest)); // form parameter
-
-        return await bsddApiClient.PostSecureAsync<UploadImportFileResultV2>(localVarPath, localVarFormParams, localVarFileParams, localVarPathParams, ct);
-    }
+    // TODO
+    // /// <summary>
+    // /// Upload a bSDD import model json file, see https://github.com/buildingSMART/bSDD/tree/master/Model/Import%20Model for more information.  Validation will be done asynchronously for large files (&gt;&#x3D; 15 MB). Validation results will be sent by e-mail. 
+    // /// </summary>
+    // /// <exception cref="BsddApiException">Thrown when fails to make API call</exception>
+    // /// <param name="organizationCode"> (optional)</param>
+    // /// <param name="formFile"> (optional)</param>
+    // /// <param name="validateOnly"> (optional)</param>
+    // /// <param name="isTest"> (optional)</param>
+    // /// <returns>Task of ApiResponse (UploadImportFileResultV2)</returns>
+    // public async Task<UploadImportFileResultV2> UploadImportFilePostAsync (string? organizationCode = null, byte[]? formFile = null, bool? validateOnly = null, bool? isTest = null, CancellationToken ct = default)
+    // {
+    //     var localVarPath = "/api/UploadImportFile/v2";
+    //     var localVarPathParams = new Dictionary<string, string>();
+    //     var localVarFormParams = new Dictionary<string, string?>();
+    //     // var localVarFileParams = new Dictionary<string, FileParameter>();
+    //
+    //     if (organizationCode != null) localVarFormParams.Add("OrganizationCode", ApiClientHelper.ParameterToString(organizationCode)); // form parameter
+    //     if (formFile != null) localVarFileParams.Add("FormFile", ApiClientHelper.ParameterToFile("FormFile", formFile));
+    //     if (validateOnly != null) localVarFormParams.Add("ValidateOnly", ApiClientHelper.ParameterToString(validateOnly)); // form parameter
+    //     if (isTest != null) localVarFormParams.Add("IsTest", ApiClientHelper.ParameterToString(isTest)); // form parameter
+    //
+    //     return await bsddApiClient.PostSecureAsync<UploadImportFileResultV2>(localVarPath, localVarFormParams, null, localVarPathParams, ct);
+    // }
 }
