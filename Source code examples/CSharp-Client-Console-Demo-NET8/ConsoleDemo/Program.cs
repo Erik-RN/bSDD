@@ -2,6 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using ConsoleDemo.DI;
 using ConsoleDemo.Settings;
 using Microsoft.Identity.Client;
 
@@ -14,6 +15,8 @@ const string authoritySignUpSignIn = $"{authorityBase}{policySignUpSignIn}";
 const string redirectUri = "http://localhost";
 
 var appSettings = AppSettingsReader.GetAppSettings<AppSettings>();
+
+var serviceProvider = ServiceProviderHelper.CreateServiceProvider(appSettings);
 
 var msalClientOptions = new PublicClientApplicationOptions
 {
